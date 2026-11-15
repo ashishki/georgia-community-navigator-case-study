@@ -1,0 +1,42 @@
+{
+  "schema": "gcn.public_case_study.acceptance_summary.v1",
+  "prepared_on": "2026-11-15",
+  "source_snapshot": "a05309faf2eb5ec0806ef0cb9f0d886c828a0211",
+  "guide": {
+    "decision_date": "2026-10-26",
+    "closure_date": "2026-10-27",
+    "decision": "accepted",
+    "acceptance_method": "Owner-selected operator/application/outbox/sender delivery and self-assessment",
+    "catalog_cards": 325,
+    "topics": 8,
+    "source_tasks": 196,
+    "selected_cards_confirmed": 48,
+    "selected_cards_total": 48,
+    "original_illustrations_covered": 58,
+    "original_illustrations_total": 58,
+    "illustration_delivery": {
+      "photos": 57,
+      "originals_inside_separate_pdf": 1
+    },
+    "native_telegram_ui_observed": false,
+    "independent_human_usability_validation_run": false,
+    "full_card_semantic_validation_established": false
+  },
+  "conversational_assistance": {
+    "acceptance": "not_accepted",
+    "recorded_recheck_date": "2026-10-29",
+    "remaining_findings": [
+      "Answer relevance and verbosity",
+      "Overconfidence in older source material",
+      "Unresolved semantic acceptance failures"
+    ]
+  },
+  "production_release_established": false,
+  "evidence_origins": [
+    "reports/product/layer1_close_20261026/acceptance-decision.json",
+    "reports/product/layer1_verify_20261027/RESULT.md",
+    "docs/PROJECT_STATUS.md",
+    "reports/product/layer2_execution_20261027/presentation-rechecks-36d0-20261029.md"
+  ],
+  "scope_note": "Sanitized aggregate summary of private records. Selected delivery coverage does not establish current legal accuracy, independent usability, full personalized-assistance acceptance or production readiness."
+}
