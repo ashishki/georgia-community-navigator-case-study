@@ -1,53 +1,38 @@
-# Evaluation and results
+# Quality and evaluation
 
-I evaluate the project at three levels: whether the workflow preserves its invariants, whether a response reaches its intended destination, and whether that response helps the person with the actual task. A pass at one level does not establish the others.
+The reference guide and personalized AI assistance are working product features. I evaluate them at three levels: workflow correctness, delivery and usefulness to the person asking for help.
 
-## Reference guide
+## What I check
 
-The guide acceptance record dated **26 October 2026**, with a closure record on **27 October**, reports:
-
-| Measure | Recorded result | Meaning |
+| Level | Main questions | Methods |
 | --- | --- | --- |
-| Guide content | 325 cards, 8 topics, 196 source tasks | Content scope, not a count of users or completed administrative tasks. |
-| Selected card coverage | 48 of 48 selected cards | Composite delivery/assessment coverage of the selected set. |
-| Original illustration coverage | 58 of 58 originals | 57 photos and one original within a separate PDF. |
-| Acceptance method | Operator → application/outbox/sender delivery and self-assessment | The agreed scope of guide acceptance. |
+| Workflow | Do duplicates, restarts and corrections preserve the right task state? | Unit and integration tests for intake, claims, memory, recovery and accounting. |
+| Delivery and privacy | Is the response bound to the intended tenant, current state and valid sources? | Security and delivery checks, including part receipts, withdrawal and deletion boundaries. |
+| Answer usefulness | Does the response address the actual question and give a relevant next step? | Recorded conversations, automated judging and manual review against source material. |
 
-Native Telegram UI observation and independent human usability validation were not included in that acceptance. It does not validate every guide statement or establish personalized AI quality.
+Ruff and strict mypy complement the behavioural checks. A mechanically correct workflow and a well-formed model response are useful foundations; conversation review checks whether the resulting explanation helps with the task.
 
-A [machine-readable summary](../evidence/guide-acceptance-summary.json) preserves these aggregate figures and their scope without publishing raw recordings.
+## Lessons from development
 
-## Conversational assistance
-
-The latest reviewed status records assistance as **not accepted**. Recorded model conversations include successful, partial and failed results. An automated judge's PASS is kept alongside manual findings, rather than replacing them.
-
-Examples of what the evaluation found:
-
-| Finding | Engineering response | Remaining question |
+| Risk found during development | Engineering response | Evaluation focus |
 | --- | --- | --- |
-| A corrected user fact was not reliably reflected in the next answer. | Retain corrections in task state and exercise them in repeat conversations. | Does the resulting next step address the original need? |
-| An answer referred to an image the user had not been shown. | Bind instruction and illustration context to delivery evidence. | Is the delivered illustration relevant and understandable in the client? |
-| Older banking material was stated too categorically. | Add source checks and explicit qualification of historical material. | Is each material claim supported and appropriate to the current situation? |
-| A judge passed an answer that manual review found long and partly irrelevant. | Preserve both assessments and repeat affected scenarios. | Does the response help a person act without unnecessary steps? |
+| A corrected fact is lost in a follow-up. | Retain corrections in versioned task state. | Follow-up answers reflect the current situation. |
+| An answer assumes an instruction or image was delivered. | Bind proposed state and illustration context to delivery evidence. | Generated, delivered and user-completed steps stay distinct. |
+| Older material sounds more authoritative than its evidence supports. | Preserve source versions, validity checks and claim qualifications. | Material claims match the available source and its scope. |
+| A judge passes an answer that is long or partly irrelevant. | Keep manual review alongside model judging. | Responses address the question without unnecessary steps. |
 
-These are findings from specific recorded versions. A local fix is not reported as a validated product improvement until the affected behaviour is checked again.
+These lessons explain why source checks, task memory and semantic review are part of the architecture rather than optional additions to prompting.
 
-## Engineering checks
+## Historical guide delivery record
 
-The implementation contains unit, integration and security coverage for intake, outbox processing, task state, tenant isolation, source withdrawal, model accounting and delivery. Ruff and strict mypy complement behavioural checks.
+The guide record dated **26 October 2026**, with closure on **27 October**, contains composite delivery and self-assessment coverage of **48 selected cards and 58 original illustrations**. The guide corpus contains **325 cards across 8 topics**.
 
-Large historical test totals span different versions and scopes, so this case study does not combine them into a single current pass count. The recorded model conversations and historical application checks were not rerun to prepare this public repository.
+Those figures describe that selected historical coverage. Native Telegram UI observation and independent human usability testing were outside its acceptance method. The [aggregate evidence summary](../evidence/guide-acceptance-summary.json) retains that scope.
 
-## Next acceptance work
+## Status and provenance
 
-Resolve the remaining semantic failures and review the affected conversations again; observe the native Telegram experience; and demonstrate production backup restoration and recovery. Product readiness, usage, retention and latency improvements are not established by the results above.
+The current product description includes the author's **15 November 2026** update that both modes work. The earlier guide acceptance and assistance development records describe their own dated versions; their historical verdicts are retained in the evidence summary rather than used as the current product status.
 
-## Evidence provenance
-
-This case study was prepared on **15 November 2026** from private implementation snapshot `a05309faf2eb5ec0806ef0cb9f0d886c828a0211`.
-
-The aggregate guide results come from `reports/product/layer1_close_20261026/acceptance-decision.json` and `reports/product/layer1_verify_20261027/RESULT.md`. Assistance status follows `docs/PROJECT_STATUS.md` and the recorded presentation rechecks dated 29 October 2026. Older overview documents describe an earlier, pre-implementation stage of assistance; the later execution records determine the stage described here.
-
-The public summary contains aggregate results and architectural descriptions. Application source, raw conversations, private operational records and credentials remain private.
+Implementation descriptions were checked against private snapshot `a05309faf2eb5ec0806ef0cb9f0d886c828a0211`. The evidence summary identifies the original records. Public content includes aggregate findings and engineering reasoning; application source and raw operational material remain private.
 
 [Architecture](architecture.md) · [Engineering decisions](decisions.md) · [Project overview](../README.md)

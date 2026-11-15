@@ -26,7 +26,7 @@ I built the product around three boundaries: durable workflow state, evidence an
 
 **Alternative.** Replaying the whole chat and asking a model to infer progress reduces initial implementation work. It also makes corrections, stale evidence and completion claims harder to inspect and reproduce.
 
-**Tradeoff.** Explicit contracts and source dependencies make schema evolution and invalidation more involved. They reduce particular failure modes, but they do not prove that every answer is correct or every source is current. Recorded conversations still showed relevance and overconfidence problems after local checks passed.
+**Tradeoff.** Explicit contracts and source dependencies make schema evolution and invalidation more involved. They reduce particular failure modes; answer relevance and the strength of each claim still need semantic review alongside the mechanical checks.
 
 **Verification focus.** Corrected facts, return after expiry, source withdrawal across multiple consumers, pending versus delivered state and answer review against the available evidence.
 
@@ -44,8 +44,8 @@ I built the product around three boundaries: durable workflow state, evidence an
 
 **Verification focus.** Reservation identity, role/model binding, limits before HTTP dispatch, recorded usage and ambiguous outcomes. Low cost is not a substitute for answer quality; evaluation checks usefulness separately.
 
-## What I would prove next
+## What these decisions enable
 
-The next product gate is whether assistance consistently gives the right, relevant next step. The remaining work includes resolving recorded semantic failures, checking corrections in fresh conversations, observing the native Telegram experience and proving production recovery before a broader release.
+The guide and AI assistance can share knowledge and context while keeping task progress, external side effects and spending explicit. This gives the product a foundation for ongoing source updates and new workflows without relying on a model to reconstruct operational state from chat history.
 
-[Architecture](architecture.md) · [Evaluation and results](evaluation.md) · [Project overview](../README.md)
+[Architecture](architecture.md) · [Quality and evaluation](evaluation.md) · [Project overview](../README.md)

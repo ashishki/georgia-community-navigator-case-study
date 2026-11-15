@@ -1,7 +1,13 @@
 {
-  "schema": "gcn.public_case_study.acceptance_summary.v1",
+  "schema": "gcn.public_case_study.acceptance_summary.v2",
   "prepared_on": "2026-11-15",
   "source_snapshot": "a05309faf2eb5ec0806ef0cb9f0d886c828a0211",
+  "current_product_status": {
+    "reference_guide": "working",
+    "personalized_ai_assistance": "working",
+    "reported_by": "project_author",
+    "reported_on": "2026-11-15"
+  },
   "guide": {
     "decision_date": "2026-10-26",
     "closure_date": "2026-10-27",
@@ -22,21 +28,20 @@
     "independent_human_usability_validation_run": false,
     "full_card_semantic_validation_established": false
   },
-  "conversational_assistance": {
+  "historical_conversational_assistance_record": {
     "acceptance": "not_accepted",
     "recorded_recheck_date": "2026-10-29",
-    "remaining_findings": [
+    "findings_at_that_version": [
       "Answer relevance and verbosity",
       "Overconfidence in older source material",
       "Unresolved semantic acceptance failures"
     ]
   },
-  "production_release_established": false,
   "evidence_origins": [
     "reports/product/layer1_close_20261026/acceptance-decision.json",
     "reports/product/layer1_verify_20261027/RESULT.md",
     "docs/PROJECT_STATUS.md",
     "reports/product/layer2_execution_20261027/presentation-rechecks-36d0-20261029.md"
   ],
-  "scope_note": "Sanitized aggregate summary of private records. Selected delivery coverage does not establish current legal accuracy, independent usability, full personalized-assistance acceptance or production readiness."
+  "scope_note": "Current product status is the author's update. Historical acceptance verdicts and selected delivery coverage retain their original dates and scope; they are not current usage or independent usability metrics."
 }

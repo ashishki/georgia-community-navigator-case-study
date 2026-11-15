@@ -1,33 +1,33 @@
 # Georgia Community Navigator
 
-**A Telegram guide and AI assistance project for navigating administrative tasks in Georgia.**
+**A Telegram assistant that helps newcomers in Georgia find practical instructions, ask follow-up questions and resume administrative tasks with source-backed guidance.**
 
-I built the project end to end: product definition, architecture, backend, knowledge workflows and evaluation. The challenge was keeping guidance, user context, sources and delivery consistent across changing information and process failures.
+**Python · FastAPI · PostgreSQL · Redis Streams · LLM integration · Docker**
 
-**Author:** [Artem Shishkin](https://github.com/ashishki) · **Scope:** independent product and engineering · **Implementation:** private
+Built end to end by [Artem Shishkin](https://github.com/ashishki). The product combines an illustrated reference guide with personalized AI assistance.
 
-[Architecture](docs/architecture.md) · [Engineering decisions](docs/decisions.md) · [Evaluation and results](docs/evaluation.md)
+[Architecture](docs/architecture.md) · [Engineering decisions](docs/decisions.md) · [Quality and evaluation](docs/evaluation.md)
 
-## The problem
+## Why it matters
 
-People dealing with paperwork in Georgia piece together government websites, practical guides and community discussions. Generic answers can miss prerequisites or repeat outdated requirements. Returning later means reconstructing the task and its unresolved questions.
+Administrative information is spread across government websites, practical guides and community discussions. Finding a page is only part of the work: people still need to understand which procedure applies, what to do next and how to continue when their situation changes.
 
-I split the product into two paths:
+Georgia Community Navigator brings that journey into one conversation. Shared knowledge gives people a consistent starting point; personalized assistance connects it to their situation; task memory supports continuity. Together, they turn fragmented information into a practical service people can return to as they work through a procedure.
 
-- **Reference guide:** browse illustrated cards, sources and files without making model calls.
-- **Conversational assistance:** clarify a situation, retain corrections and propose a supported next step. Implemented and under evaluation; product acceptance remains open.
+## My role
 
-## What I built
+I owned product definition, user journeys, architecture, the Python backend, Telegram workflows, knowledge organization, and quality and recovery checks. I designed the integration between the guide, AI assistance, task memory and external delivery.
 
-- **325 guide cards across 8 topics**, derived from **196 source tasks**, with illustrations and source references.
-- A transactional intake/outbox, asynchronous workers and delivery receipts that preserve state across restarts.
-- Versioned task context, source-validity checks and model accounting, supported by behavioural tests and recorded conversation reviews.
+## What the product enables
 
-## Architecture at a glance
+| User need | Product response |
+| --- | --- |
+| Find a clear starting point | An illustrated guide with **325 cards across 8 topics**, source links and supporting files. |
+| Understand a specific situation | AI assistance that asks clarifying questions and explains the relevant next step using source material. |
+| Continue without starting over | Task memory retains corrections, unresolved questions and progress across interactions. |
+| Understand where guidance comes from | Source references and version checks connect explanations to their supporting material. |
 
-![System overview: durable intake, bounded processing and receipt-based delivery backed by PostgreSQL](assets/architecture.svg)
-
-PostgreSQL owns durable state; Redis carries work. Models interpret and explain; application code controls permissions, state transitions, dispatch and limits.
+The guide works without model calls. Personalized assistance builds on shared knowledge and task context, with explicit limits and accounting for model work.
 
 ## Stack and why
 
@@ -40,7 +40,15 @@ PostgreSQL owns durable state; Redis carries work. Models interpret and explain;
 | Docker and Docker Compose | Containerized services and isolated optional research tooling. |
 | pytest, Ruff, strict mypy | Behavioural checks, consistency and type checking. |
 
-## Three decisions worth discussing
+## How the pieces work together
+
+![Guide and AI assistance share task memory and source checks, with durable processing and delivery for recovery](assets/architecture.svg)
+
+Both modes use a common foundation for context, evidence and delivery. PostgreSQL keeps durable state; Redis Streams moves work. Models interpret and explain; application code controls permissions, state transitions, dispatch and limits.
+
+[Follow a request through the architecture →](docs/architecture.md)
+
+## Key engineering decisions
 
 1. **Database-owned workflows:** queue redelivery must not blindly repeat external side effects.
 2. **Explicit progress and evidence:** generating an instruction does not mean it was delivered, completed or remains valid.
@@ -48,16 +56,12 @@ PostgreSQL owns durable state; Redis carries work. Models interpret and explain;
 
 [Read the alternatives and tradeoffs →](docs/decisions.md)
 
-## Results and current stage
+## Quality approach
 
-The guide was accepted through delivery and self-assessment. Composite evidence covers **48 selected cards and all 58 original illustrations**. Native Telegram UI observation and independent usability testing were outside that acceptance.
+I check workflow correctness, delivery and answer usefulness separately. The project combines unit, integration and security tests with recorded conversations, automated judging and manual review.
 
-Assistance checks exposed relevance, verbosity and overconfidence in older sources. I retained those findings alongside successful cases and kept acceptance open.
-
-**A correctly delivered response can still fail to help the user.** Evaluation separates those outcomes.
-
-[Results, scope and remaining work →](docs/evaluation.md)
+[Read about quality checks and development lessons →](docs/evaluation.md)
 
 ## About this repository
 
-This case study contains architecture, engineering decisions and aggregate results. Application code, private data and operational records remain private.
+This public case study presents the product, architecture and engineering decisions. The application implementation is private.

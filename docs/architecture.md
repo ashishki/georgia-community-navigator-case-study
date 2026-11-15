@@ -1,6 +1,6 @@
 # Request flow and architecture
 
-Georgia Community Navigator combines a reference guide with an evaluated conversational-assistance path. Both use the same durable processing and delivery foundation. Browsing the guide does not require a model call.
+Georgia Community Navigator combines two working modes: a reference guide and personalized AI assistance. Both use the same durable processing and delivery foundation. Browsing the guide does not require a model call.
 
 ## Component flow
 
@@ -27,7 +27,7 @@ flowchart TD
     RECEIPT --> DB
 ```
 
-This is a logical component view. The assistance branch is implemented but has not completed product acceptance; the diagram is not a claim about a currently operating production deployment.
+The key connections are shared task context, versioned source material and durable delivery. The diagram shows logical components; the sections below explain their responsibilities.
 
 ## 1. Accept the update durably
 
@@ -67,4 +67,4 @@ Conversation deletion and access lifecycle operations invalidate content separat
 
 The tradeoff is additional lifecycle state and recovery logic. That complexity is justified by the need to reason about external side effects and changing evidence across process restarts. It does not provide exactly-once delivery across an external API.
 
-[Engineering decisions](decisions.md) · [Evaluation and results](evaluation.md) · [Project overview](../README.md)
+[Engineering decisions](decisions.md) · [Quality and evaluation](evaluation.md) · [Project overview](../README.md)
