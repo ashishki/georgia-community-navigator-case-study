@@ -23,6 +23,33 @@ Ruff and strict mypy complement the behavioural checks. A mechanically correct w
 
 These lessons explain why source checks, task memory and semantic review are part of the architecture rather than optional additions to prompting.
 
+## Recorded conversation
+
+On 19 November 2026, a fixed eight-turn run on build `3f6cf5a3` used synthetic questions and recorded Telegram delivery. The two tax replies below both passed review for correctness, usefulness and tone, and both were recorded within a minute. Of the other six turns, one returned a service message and five had no recorded reply.
+
+<details>
+<summary>Original Russian transcript</summary>
+
+**User**
+
+> Мне пришло начисление 232 лари за октябрь по малому бизнесу. В банке вижу списание 160 лари за этот налог, а в личном кабинете налоговой ещё не смотрела. Платить сегодня все 232 или только разницу?
+
+**Assistant**
+
+> За месяц начислено 232 лари. Банк списал 160 лари, но по банковской выписке ещё нельзя определить доплату. Какая сумма из этого платежа зачислена в бюджет по этому начислению в вашей лицевой карточке RS?
+
+**User**
+
+> Вошла в кабинет. В карточке за октябрь налог 232 лари, из тех 160 лари туда зачислены 150, ещё 10 была банковская комиссия. Зачётов и старых долгов нет. Сколько осталось доплатить за октябрь?
+
+**Assistant**
+
+> За этот месяц осталось доплатить 82 лари. За месяц начислено 232 лари. В бюджет уже зачислено 150 лари. Сумма зачётов за месяц — 0 лари.
+
+</details>
+
+The README images summarize this transcript in English. The test evaluated the assistant's response and recorded delivery for the specified inputs.
+
 ## Historical guide delivery record
 
 The guide record dated **26 October 2026**, with closure on **27 October**, contains composite delivery and self-assessment coverage of **48 selected cards and 58 original illustrations**. The guide corpus contains **325 cards across 8 topics**.
